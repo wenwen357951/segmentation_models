@@ -4,6 +4,8 @@ import keras
 import matplotlib.pyplot as plt
 import numpy as np
 import os
+import random
+
 
 import segmentation_models as sm
 
@@ -18,27 +20,18 @@ or you could switch to other framework using `sm.set_framework('tf.keras')`
 sm.set_framework('tf.keras')
 
 # Global Variable
-DATA_DIR = '/app/examples/data/ICH'
-OUTPUT_DIR = '/app/examples/output/normal'
+DATA_DIR = "/project/resources/ICH Dataset"
+OUTPUT_DIR = "/project/output/"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
-BACKBONE = 'efficientnetb3'
+BACKBONE = "efficientnetb3"
 BATCH_SIZE = 8
-CLASSES = ['ich']
+CLASSES = ["ich"]
 LR = 0.0001
 EPOCHS = 50
 
 
-# Download CamVid Dataset
-def download_dataset():
-    # load repo with data if it is not exists
-    if not os.path.exists(DATA_DIR):
-        print('Loading data...')
-        os.system('git clone https://github.com/alexgkendall/SegNet-Tutorial ./data')
-        print('Done!')
-
-
 # helper function for data visualization
-def visualize(et="", fn="tmp.png", **images):
+def visualize(et="", fn=f"tmp-{''.join(random.sample('zyxwvutsrqponmlkjihgfedcba0123456789',6))}.png", **images):
     """PLot images in one row."""
     num_of_images = len(images)
     plt.figure(figsize=(16, 5))

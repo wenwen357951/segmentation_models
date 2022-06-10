@@ -1,6 +1,6 @@
-FROM tensorflow/tensorflow:latest-gpu AS RunningTime
+FROM tensorflow/tensorflow:latest-gpu AS runtime
 LABEL com.wennest.trclab.segmentation_models.author=S.W.-Chen(wenwen357951@gmail.com)
-WORKDIR project
+WORKDIR /project
 
 COPY requirements.txt .
 
